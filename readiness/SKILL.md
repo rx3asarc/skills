@@ -65,7 +65,7 @@ Read `references/combos.md`. Pick the smallest combo that clears every NOT READY
 4. The combo ends in an artifact a builder can open cold: an agent brief, or a spec with tickets. Readiness that lives only in this conversation is not readiness.
 5. Verification gets designed before the build and run after it, never skipped in between.
 
-Two shortcuts are legitimate and should be taken when they fit. If a skill already ships the route and the gate for this kind of work, the pipeline is the answer and no planning skill is needed: `the publishing pipeline skill`, `page-rebuild`, `ci-latency`, `the theme workflow skill`. That pipeline also satisfies axes 2 and 8 by name, so do not hand-re-verify what its own tests already check. If the finding is that its tests miss something, that is a condition on the pipeline, not a reason to block the work. If the only gap is one fact held by the requester, the answer is a single question, not a combo.
+Two shortcuts are legitimate and should be taken when they fit. If a skill already ships the route and the gate for this kind of work, the pipeline is the answer and no planning skill is needed. An existing pipeline skill that ships both the route and the gate outranks any combo of planning skills. That pipeline also satisfies axes 2 and 8 by name, so do not hand-re-verify what its own tests already check. If the finding is that its tests miss something, that is a condition on the pipeline, not a reason to block the work. If the only gap is one fact held by the requester, the answer is a single question, not a combo.
 
 ## Step 4: emit the verdict
 
@@ -96,7 +96,7 @@ If the verdict is GO or GO WITH CONDITIONS, start building under the artifact, o
 ## Hard rules
 
 - An axis with no evidence is UNKNOWN, never READY.
-- A gate that cannot go red is not verification. Test the gate on a change that must fail it before trusting it (`ci-latency` says the same thing about hooks).
+- A gate that cannot go red is not verification. Test the gate on a change that must fail it before trusting it (a CI-latency audit skill says the same thing about hooks).
 - Do not let readiness become the work. The audit is minutes. A 136 second eight-axis report for a job whose next step is one pipeline command is the failure this skill exists to prevent.
 - Local guardrails come first. A perfect plan that touches the live theme, prints a secret, or quotes an unsourced product claim is not ready, it is a hazard.
 - Never invent an axis verdict to reach GO. NO GO delivered early is the cheapest output this skill produces.

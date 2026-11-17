@@ -41,7 +41,7 @@ The line that makes it an audit rather than a lookup: a fact you can look up —
 
 ## What is not here
 
-Workflow skills bound to one company's storefront and ad accounts, and a third-party skill pack of someone else's work. Neither is mine to publish. Where `references/skill-index.md` mentions a skill of that shape, read it as "a skill like this exists", not as a broken link. The index lists what ships.
+Workflow skills bound to one company's storefront and ad accounts, and a third-party skill pack of someone else's work. Neither is mine to publish. A few prose passages name skills of that shape without publishing them, because the lesson needs a referent. Read them as "a skill like this exists", not as a broken link. `references/skill-index.md` lists only what ships.
 
 ## Notes
 

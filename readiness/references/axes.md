@@ -10,9 +10,9 @@ What the build must not break, and who said so.
 
 Probe: read the rulebook for the domain before anything else (`~/config/AGENTS.md` in full, plus the domain skill when one exists). Name the constraints in one line each.
 
-Evidence: a named constraint and where it lives. "Live theme the live theme is untouchable, guard is `theme_guard.py check`" beats "I will be careful".
+Evidence: a named constraint and where it lives. "Production is untouchable, and the guard is a command you can run" beats "I will be careful".
 
-Closers: `the theme workflow skill` (theme work), `ci-latency` (workflow work), `the ads skill` (campaign work), `design-mastery` (image work). No skill closes it for a new domain; reading the rulebook does.
+Closers: whichever skill owns that surface — a deploy workflow, an ads account, an asset pipeline. A domain with no such skill is closed by reading its rulebook, not by a planning skill.
 
 Fake version: skimming the rulebook and asserting compliance. If a guard command exists, run it and paste the output.
 
@@ -24,7 +24,7 @@ Probe: run the thing, or run the measurement the claim implies. Cheap and read-o
 
 Evidence: a command and its output, a URL, a screenshot, a number with units. "Users complain" is not evidence.
 
-Closers: `diagnosing-bugs`, `triage` step 3, `ci-latency` for anything that starts with "CI is slow", `recall` when there is history on this box.
+Closers: `diagnosing-bugs`, `triage` step 3, a CI-latency audit skill for anything that starts with "CI is slow", a session-history recall skill when there is history on this box.
 
 Fake version: verifying the claim in prose rather than in the system, then planning against a problem that does not exist.
 
@@ -36,7 +36,7 @@ Probe: search the codebase by domain concept, not by the requester's wording. Th
 
 Evidence: where you looked and what you found, including the search that came up empty.
 
-Closers: `triage` step 1, `recall`, `why` when the rejection reason is old and you need the reason, not the ruling.
+Closers: `triage` step 1, a session-history recall skill, `why` when the rejection reason is old and you need the reason, not the ruling.
 
 Fake version: grepping for the exact noun in the request, finding nothing, and declaring it new.
 
@@ -60,7 +60,7 @@ Probe: write the acceptance criteria as things a stranger could test, with numbe
 
 Evidence: each criterion has a check attached. "Articles are good" is not a criterion; "the page returns 200 over HTTPS on `www.`, LCP under 2.5s on a throttled mobile run, and no unsourced claim in the copy" is three checks.
 
-Closers: `principle-prove-it-works`, `to-tickets` (each ticket carries one), the agent brief template in `triage/AGENT-BRIEF.md`, `page-rebuild` when the target is a rebuilt page with its 15 gates.
+Closers: a third-party prove-it-works principle, `to-tickets` (each ticket carries one), the agent brief template in `triage/AGENT-BRIEF.md`, a guarded page-rebuild workflow when the target is a rebuilt page with its 15 gates.
 
 Fake version: criteria that restate the description of the work. "Add the section" is not a done predicate.
 
@@ -96,7 +96,7 @@ Probe: run the check against the current, unbuilt state. It must fail, or report
 
 Evidence: the failing run, or the baseline number from the pre-change state.
 
-Closers: `ci-latency` (which starts with an audit that splits jobs into waiting, setup, and work before anyone optimises), `create-verification-skill` for repeated checks, `tdd` for code-shaped work, `page-rebuild` for rebuilt pages, `principle-sequence-verifiable-units` for ordering.
+Closers: a CI-latency audit skill (which starts with an audit that splits jobs into waiting, setup, and work before anyone optimises), a verification-skill generator for repeated checks, a TDD cycle skill for code-shaped work, a guarded page-rebuild workflow for rebuilt pages, a third-party sequencing principle for ordering.
 
 Fake version: a check that reports green on an unbuilt system. That is worse than no check, because it buys trust it did not earn.
 

@@ -24,7 +24,7 @@ A task counts as evidence only when `blind` fails and `skill` passes. Where both
 | article, pipeline already exists | 0/3 | 3/3 | skill earns it |
 | already built (concept search) | 1/3 | 3/3 | skill earns it |
 | rejected in `.out-of-scope/` | 0/3 | 3/3 | skill earns it |
-| ci, unverified claim | 3/3 | 3/3 | no signal, `ci-latency` is in AGENTS.md |
+| ci, unverified claim | 3/3 | 3/3 | no signal, a CI-latency audit skill is in AGENTS.md |
 | live theme guardrail | 3/3 | 3/3 | no signal, in AGENTS.md |
 | route invisible, XL | 3/3 | 3/3 | no signal |
 | "make checkout faster" | 3/3 | 3/3 | no signal |
@@ -67,4 +67,4 @@ cd skills/readiness/evals
 ./run.py --compare v4 mine
 ```
 
-Each run costs nothing beyond model tokens, about ten minutes wall time for 60 runs at six parallel. Answers land in `runs/<label>/<arm>/<task>__r<n>.json`, so every claim on this page can be re-read rather than trusted.
+Each run costs nothing beyond model tokens, about ten minutes wall time for 60 runs at six parallel. Answers land in `runs/<label>/<arm>/<task>__r<n>.json` on the machine that ran them. Those transcripts are not in this repo — they quote the private fixture — so the aggregate table above is the record, and the harness is here to regenerate the rest.

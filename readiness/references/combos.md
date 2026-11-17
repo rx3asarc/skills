@@ -80,11 +80,11 @@ Out of order: tickets before the spec slices the wrong thing. Tickets before the
 
 Gap: axis 8. Never a reason to park the work, always the first thing built.
 
-- `create-verification-skill` when the same check will be run repeatedly.
-- `tdd` when the work is code with testable behaviour.
-- `ci-latency` when the gate is CI itself: audit first, split waiting from setup from work, and expect the fix to be setup rather than tests.
-- `page-rebuild` when the target is a page rebuild; it carries the 15 gates and the guarded cutover.
-- `principle-sequence-verifiable-units` when you need each slice verified before the next starts.
+- a verification-skill generator when the same check will be run repeatedly.
+- a TDD cycle skill when the work is code with testable behaviour.
+- a CI-latency audit skill when the gate is CI itself: audit first, split waiting from setup from work, and expect the fix to be setup rather than tests.
+- a guarded page-rebuild workflow when the target is a page rebuild; it carries the 15 gates and the guarded cutover.
+- a third-party sequencing principle when you need each slice verified before the next starts.
 
 Artifact: a command whose failure is unambiguous, plus a recorded failing run from before the change.
 
@@ -94,7 +94,7 @@ Gap: no narrower playbook fits: a migration, an ambitious multi-part change, or 
 
 Order: frame, design the workflow, run the loop, keep the audit trail, verify and hand back. It expects to consult the principle skills by name.
 
-Misuse: using it for work that already has a pipeline. On this box that means `the publishing pipeline skill`, `page-rebuild`, and `ci-latency` all outrank it.
+Misuse: using it for work that already has a pipeline. On this box that means `the publishing pipeline skill`, a guarded page-rebuild workflow, and a CI-latency audit skill all outrank it.
 
 ## C10: `handoff`
 
@@ -107,7 +107,7 @@ Artifact: a self-contained brief a fresh session can start from with zero contex
 Only two earn their length:
 
 - **XL greenfield:** `wayfinder` → `to-spec` → `to-tickets` → (`architect` on the one-way door only) → `implement-spec`. The map resolves decisions, the spec states the end, the tickets order the build. Five items, and the middle three each fall away when the work is smaller.
-- **Risky change to a live system:** `ci-latency`-style audit or `page-rebuild` recon first, then `create-verification-skill`, then build behind the guard, then `code-review` or `interrogate` on the diff. Note that `interrogate` reviews code that exists; running it before the build produces opinions, not findings.
+- **Risky change to a live system:** a CI-latency audit, or recon of the rebuilt page first, then a verification-skill generator, then build behind the guard, then `code-review` or an interrogation review pass on the diff. Note that an interrogation review pass reviews code that exists; running it before the build produces opinions, not findings.
 
 ## Worked examples
 
@@ -115,8 +115,8 @@ Only two earn their length:
 
 **"Rewrite and push this article."** `the publishing pipeline skill` already ships the route, the tests, and the push. Axes 7 and 8 are READY because the pipeline encodes them. Verdict GO, combo C0, then run the pipeline. This is the shortcut the meta-skill exists to take.
 
-**"Our CI is slow."** Axis 2 fails and the probe is the audit: `scripts/ci_audit.py` splits each job into waiting, setup, and work. Combo: `ci-latency`, which forbids optimising before that number exists. No grilling, because the requester's opinion of the cause is the thing under test.
+**"Our CI is slow."** Axis 2 fails and the probe is the audit: `scripts/ci_audit.py` splits each job into waiting, setup, and work. Combo: a CI-latency audit skill, which forbids optimising before that number exists. No grilling, because the requester's opinion of the cause is the thing under test.
 
-**"Move the store off the page builder for good."** Size XL. Axes 6 and 7 both fail. Combo C6, `wayfinder`, with `page-rebuild` consulted as the domain playbook for each page it rebuilds. Not C7: a spec written now would be fiction.
+**"Move the store off the page builder for good."** Size XL. Axes 6 and 7 both fail. Combo C6, `wayfinder`, with a guarded page-rebuild workflow consulted as the domain playbook for each page it rebuilds. Not C7: a spec written now would be fiction.
 
 **"Make the checkout faster."** Axis 5 fails first. "Faster" is not falsifiable. Before any skill runs, get the number and the instrument (LCP, TTFB, conversion, all with a method). Then C1 or C8.
