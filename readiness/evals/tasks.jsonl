@@ -1,0 +1,77 @@
+{"id": "typo", "split": "train",
+ "cwd": "/tmp/readiness-fixture",
+ "verdict": "GO",
+ "prompt": "In the repo at /tmp/readiness-fixture (a copy of a theme, not the live storefront repo), one footer link label changes from \"Kontakt\" to \"Kontakta oss\". Nothing else changes: no redirects, no other locale, no menu order change. Is this ready to build? Answer with the verdict first.",
+ "expect": [],
+ "forbid": [],
+ "note": "size S: GO, no planning skills, no report file. Tests the cap and the effort budget."}
+
+{"id": "article", "split": "train",
+ "cwd": "/tmp/readiness-fixture",
+ "verdict": "GO*",
+ "prompt": "A published blog article needs rewriting and pushing to the CMS. Facts: the article exists, the rewrite brief is approved, the pipeline's own tests are the gate. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)pipeline"],
+ "forbid": [],
+ "note": "an existing pipeline encodes route and gate: GO, run the pipeline."}
+
+{"id": "ci", "split": "train",
+ "cwd": "/tmp/readiness-fixture",
+ "not_go": true,
+ "prompt": "Our GitHub Actions CI takes about 25 minutes. The team thinks the test suite is the cause, so the plan is to shard the tests. Nobody has measured where the time goes. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)ci-latency|ci_audit", "(?i)audit|measure|waiting|setup"],
+ "forbid": [],
+ "note": "unverified claim: audit before optimising. Known no-signal task, ci-latency is in AGENTS.md."}
+
+{"id": "live-theme", "split": "train",
+ "cwd": "/tmp/readiness-fixture",
+ "prompt": "Change the announcement bar colour on the the storefront storefront. The plan is to edit the live theme directly today, no duplicate, no browser test. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)the live theme|live theme", "(?i)duplicate|theme_guard"],
+ "forbid": [],
+ "note": "axis 1 first. Known no-signal task, the rule is in AGENTS.md."}
+
+{"id": "migration", "split": "train",
+ "cwd": "/tmp/readiness-fixture",
+ "prompt": "We want to move the store from Shopify to another commerce platform entirely. We have not chosen the platform, picked the migration path, or worked out which data has to move first, and nobody has done this before. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)wayfinder", "(?i)map|destination|decision"],
+ "forbid": [],
+ "note": "size XL, route genuinely invisible: wayfinder, not to-spec. The earlier version of this task asserted unknowns that were answerable from disk, so a good agent correctly refused it."}
+
+{"id": "faster", "split": "train",
+ "cwd": "/tmp/readiness-fixture",
+ "not_go": true,
+ "prompt": "Make the checkout faster. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)falsifiable|no number|not measurable|measure|instrument|axis 5|predicate"],
+ "forbid": [],
+ "note": "axis 5 fails: 'faster' is not a predicate, so it cannot be a GO."}
+
+{"id": "already-built", "split": "val",
+ "cwd": "/tmp/readiness-fixture",
+ "verdict": "NO GO",
+ "prompt": "A customer asked us to add a sitemap generator to this repo. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)gen_sitemap|already (built|exists|implemented)"],
+ "forbid": [],
+ "note": "axis 3 by concept search: it exists."}
+
+{"id": "rejected", "split": "val",
+ "cwd": "/tmp/readiness-fixture",
+ "verdict": "NO GO",
+ "prompt": "A customer wants a discount-code banner on the cart page. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)out-of-scope|rejected|declined|wontfix"],
+ "forbid": [],
+ "note": "axis 3 via the rejection log."}
+
+{"id": "over-process", "split": "val",
+ "cwd": "/tmp/readiness-fixture",
+ "verdict": "GO*",
+ "prompt": "Add a link to the footer: label \"Frakt och leverans\", destination /policies/shipping-policy, in the customer-support menu, last position. I was going to run triage, grilling, domain-modeling, to-spec, to-tickets and wayfinder first. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)cap|three|over-?process|too many|not needed|no skill"],
+ "forbid": [],
+ "note": "the cap and the size rule: refuse the stack."}
+
+{"id": "park", "split": "val",
+ "cwd": "/tmp/readiness-fixture",
+ "verdict": "PARK",
+ "prompt": "We want to rework checkout pricing, but the Shopify Plus contract renewal has to be approved by the account owner first, and nobody knows the answer yet. Is this ready to build? Answer with the verdict first.",
+ "expect": ["(?i)handoff"],
+ "forbid": [],
+ "note": "blocked on a person: PARK, then handoff."}
