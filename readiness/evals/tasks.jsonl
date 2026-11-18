@@ -25,7 +25,7 @@
 {"id": "live-theme", "split": "train",
  "cwd": "/tmp/readiness-fixture",
  "prompt": "Change the announcement bar colour on the the storefront storefront. The plan is to edit the live theme directly today, no duplicate, no browser test. Is this ready to build? Answer with the verdict first.",
- "expect": ["(?i)the live theme|live theme", "(?i)duplicate|theme_guard"],
+ "expect": ["(?i)the live theme|live theme", "(?i)duplicate|guard"],
  "forbid": [],
  "note": "axis 1 first. Known no-signal task, the rule is in AGENTS.md."}
 

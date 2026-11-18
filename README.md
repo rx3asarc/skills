@@ -27,6 +27,8 @@ Readiness is not a feeling about how well the idea was described. It is eight pr
 
 It ships with `references/axes.md`, `references/combos.md`, the routing index, the READINESS template, and an eval harness: ten tasks, three arms, three runs each, deterministic scoring, plus the score table from the last pass — including the tasks where the skill showed no signal.
 
+The harness has since been pointed at the skills readiness routes to. `grilling` beats an agent that cannot read it. `triage` and `wayfinder` do not, on the tasks constructible so far, and their combos say so.
+
 ### `fitness-audit/`
 
 Situate a component — a tool, method, technique, library, institution, practice — before relying on it. A fitness-for-purpose audit in seven constituents: **function, constraint, boundary, assumption, trigger, alternative, norm.** The deliverable is a verdict carrying its evidence class: fit for *whose* purpose, to what tolerance, at normal load or at the tails and under stress.

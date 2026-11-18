@@ -2,6 +2,10 @@
 
 A combo is an ordered set of skills chosen to close the axes that failed. Pick the smallest one. Each entry below names the gap it closes, the order, the artifact it leaves behind, and what breaks if you run it out of order.
 
+## Measured, or argued
+
+Each combo says which it is. **Measured** means an eval compared it against an agent that could not read the skill files, and it won. **Argued** means the reasoning is sound and the evidence is missing, so treat it as a hypothesis, not a fact. The harness and the score table live in `readiness/evals/`.
+
 Paths for every skill are in `skill-index.md`. Absolute paths, because pi has no Skill tool.
 
 ## C0: no skills
@@ -14,6 +18,8 @@ Cost: nothing. Artifact: the work itself. Use it far more often than the other c
 
 Gap: axis 2 (claim unverified) or axis 3 (maybe already built), on work that already has a tracker issue.
 
+Status: **argued, with a null result.** Eight runs against an agent that could not read the skill scored the same: both produced the right state and the right brief once the fixture stated its label convention and the rubric graded the issue file rather than the chat. Keep triage for its discipline and its housekeeping, not because it has been shown to decide better.
+
 Order: gather, recommend, verify the claim, then label. Grill only if step 4 says the request is underspecified.
 
 Artifact: an agent brief on the issue, plus the state label. The brief is the readiness artifact; `ready-for-agent` is just a label on it.
@@ -23,6 +29,8 @@ Out of order: labelling `ready-for-agent` before verifying the claim produces a 
 ## C2: `grilling` + `domain-modeling`
 
 Gap: axis 6 (decisions open), on work with no tracker issue, where the requester holds the decisions.
+
+Status: **measured.** Six runs against an agent that could not read the skill: the unaided arm asked questions but never committed to a recommended answer, and never stopped for a round. 2/6 against 6/6. The failures are exactly the two behaviours the skill adds.
 
 Order: grilling rounds, with domain terms sharpened in `GLOSSARY.md` as decisions land.
 
@@ -59,6 +67,8 @@ Out of order: architecting before axis 5 gives you a careful sketch of the wrong
 ## C6: `wayfinder`
 
 Gap: axis 7 when the route is genuinely invisible and the work spans sessions.
+
+Status: **argued, with a null result.** Six runs each arm, graded on the map written to disk: 6/6 both. An unaided agent that is told the route is foggy also writes a map. Its budget rule came out of this testing, and the discriminator worth trying next is whether the map holds decision tickets rather than build slices.
 
 Order: name the destination, write the map, open decision tickets, resolve them one at a time. Its ticket types already include grilling, research, and prototype, so do not bolt C2 on top.
 
@@ -102,6 +112,14 @@ Gap: verdict PARK. The gap needs a person, a decision that is not yours, or a se
 
 Artifact: a self-contained brief a fresh session can start from with zero context. Use it instead of leaving the audit half-done in a transcript nobody will reread.
 
+## C11: `fitness-audit`
+
+Gap: the open question is not about the build but about the thing the build rests on: a library, a method, a vendor's claim, a measurement instrument.
+
+Order: `fitness-audit` first, then back to axis 5 or 8 with a verdict you can attach to the plan. Its seven constituents (function, constraint, boundary, assumption, trigger, alternative, norm) are the input-audit counterpart to these eight axes, which audit the action. Do not run both on the same object: if the plan is the subject, this is the wrong skill.
+
+Artifact: a fitness verdict carrying its evidence class: fit for whose purpose, to what tolerance, at normal or under stress.
+
 ## Longer sequences
 
 Only two earn their length:
@@ -111,7 +129,7 @@ Only two earn their length:
 
 ## Worked examples
 
-**"Add a filter section to the product page."** Size M. Axis 1 fails first: theme work, live theme untouchable, guard must pass. Axis 2: nobody measured the current section behaviour. Combo: run `theme_guard.py check`, duplicate the theme, then C2 for the one open design decision, then build. Do not run `wayfinder`. Do not write a spec for a section.
+**"Add a filter section to the product page."** Size M. Axis 1 fails first: theme work, live theme untouchable, guard must pass. Axis 2: nobody measured the current section behaviour. Combo: run the theme guard, duplicate the theme, then C2 for the one open design decision, then build. Do not run `wayfinder`. Do not write a spec for a section.
 
 **"Rewrite and push this article."** `the publishing pipeline skill` already ships the route, the tests, and the push. Axes 7 and 8 are READY because the pipeline encodes them. Verdict GO, combo C0, then run the pipeline. This is the shortcut the meta-skill exists to take.
 

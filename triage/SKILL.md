@@ -75,9 +75,13 @@ Show counts and a one-line summary per item. Let the maintainer pick.
 
 3. **Verify the claim.** Before any grilling, check that the claim holds up. For a bug, reproduce it from the reporter's steps. For a PR, confirm the diff does what it claims: check it out, run the relevant tests or commands. Report what happened: confirmed (with code path), failed, or insufficient detail (a strong `needs-info` signal). A confirmed verification makes a much stronger agent brief.
 
+   Reproduce with what is already in the repo. Do not add tests, do not fix the bug, do not write code of any kind during triage. The artifact is a brief; a test file written now is a build that skipped its own label, and it also destroys the evidence that the bug was real before you touched it.
+
 4. **Grill (if needed).** If the request needs fleshing out, call the Skill tool twice, for "grilling" and "domain-modeling", and grill it into shape a round of questions at a time, sharpening domain terms and updating `GLOSSARY.md`/ADRs inline as decisions land.
 
 5. **Apply the outcome:**
+
+   A state label is earned, never inferred. `ready-for-agent` and `ready-for-human` require a confirmed verification from this session plus a brief. If verification failed, or was impossible from here, the state is `needs-info`, whatever the request looks like. If the work already exists in the codebase, or was previously rejected, the state is `wontfix`, and the issue closes with a pointer to where it lives or to the rejection; a redundant or rejected request never gets a brief. When in doubt between a brief and a question, the question is cheaper: a brief for work that should not happen costs the reporter a whole build.
    - `ready-for-agent`: post an agent brief comment ([AGENT-BRIEF.md](AGENT-BRIEF.md)).
    - `ready-for-human`: same structure as an agent brief, but note why it can't be delegated (judgment calls, external access, design decisions, manual testing).
    - `needs-info`: post triage notes (template below).

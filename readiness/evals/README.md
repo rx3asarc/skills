@@ -51,6 +51,38 @@ Three measurement bugs were found and fixed on the harness side, not the skill s
 
 Two tasks were rewritten because the test was wrong, not the skill: the fixture was not a git repo (so correct agents refused the "git-committed" fact), and the migration task claimed the pages were unknown when they were discoverable on disk (so correct agents returned GO WITH CONDITIONS and were scored as failures). A good eval gets edited as much as the artifact under test.
 
+
+## Same harness, the skills this one routes to
+
+Pointing the same arms at three of the routed skills changed the routing table, not just the scores.
+
+| Subject | Task | blind (files unreadable) | skill |
+|---|---|---|---|
+| `grilling/` | vague plan | 0/2 | 2/2 |
+| | facts are the griller's job | 2/2 | 2/2 |
+| | one round, then wait | 0/2 | 2/2 |
+| | **total** | **2/6** | **6/6** |
+| `triage/` | four issues, graded on the issue file | 8/8 | 8/8 |
+| `wayfinder/` | three charting asks, graded on the written map | 6/6 | 6/6 |
+
+Grilling earns its place, and the failures name why: the unaided arm asks questions but never commits to a recommended answer, and never stops for a round. Triage and wayfinder are null results. The first version of the triage fixture showed an advantage, then it turned out the fixture was ambiguous: one issue cited numbers the code did not produce, and the tracker had no stated label convention. Fixing the fixture erased the advantage, which is the right outcome for an eval and the wrong outcome for a boast.
+
+Two skills changed because of this: `triage/` now states that a state label is earned by a verification in the session and that no test or fix gets written during triage (a run committed a fix mid-triage), and `wayfinder/` has a budget (one run spent more than five minutes charting a two-line ask).
+
+### What the measurement got wrong before it got right
+
+Nine defects, all in the harness or the fixture, none fixed by weakening a skill:
+
+1. `NO GO` matched a `GO` pattern; the verdict is now read from the first line containing "Verdict".
+2. Forbidding a skill's name punished a mention instead of a recommendation.
+3. `--no-skills` does not stop an agent from grepping a skills directory: the first control arm read a skill from disk and passed. Hence the bind-mounted `blind` arm.
+4. The prompt naming the skill leaked the method to the control arm.
+5. A committed `__pycache__` counted as changed code.
+6. Agents commit their work, so resetting to HEAD let one run's changes seed the next. Reset goes to a `baseline` tag.
+7. Grading `issues/**/*.md` graded the fixture's own files rather than the run's output. The git delta is graded now.
+8. Demanding the literal token for question one failed numbered questions in other forms.
+9. Two tasks were ambiguous by construction. Both were fixture bugs.
+
 ## Limits, stated plainly
 
 - Ten tasks, one model, one day. The variance is real: the blind arm moved between 11/30 and 19/30 across labels on identical code, so per-task rates need n=3 to mean anything.

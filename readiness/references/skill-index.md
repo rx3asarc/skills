@@ -21,10 +21,14 @@ The skills this verdict can route to, and the axis each one closes. Everything l
 | `writing-for-agents/` | any axis where the deliverable is prose an agent must execute |
 | `codebase-design/` | axis 4 when the surface does not exist yet |
 | `loopy/` | axis 7 for long autonomous runs |
-| `fitness-audit/` | axis 1 and axis 3 when a component's fitness is the open question |
+| `fitness-audit/` | axis 1 and axis 3 when a component's fitness is the open question (combo C11) |
 
 ## What is not here
 
 The original index also pointed at two further roots on one machine: a set of client-specific skills (a storefront's theme, publishing, CRO and ads workflows) and a third-party pack (`architect`, `arena`, an interrogation review pass, a TDD cycle skill, and the the third-party principle pack family).
 
 Neither is published: the first is someone's private business, the second is someone else's work. Where a verdict needs one of them, read that as "a skill of this shape exists", not as a broken link.
+
+## Evals
+
+`readiness/evals/` holds the harness, the tasks, and the score table. It has also been pointed at the skills this verdict routes to. `grilling` beat an agent that could not read it (2/6 against 6/6). `triage` and `wayfinder` did not (8/8 and 6/6 for the unaided arm). Read a combo's status line before citing it as better than unaided work.
